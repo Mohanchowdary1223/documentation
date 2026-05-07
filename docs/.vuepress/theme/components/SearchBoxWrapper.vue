@@ -9,7 +9,7 @@ import SearchBox from '@SearchBox'
 export default {
   components: {
     SearchBox,
-    VersionedSearchBox: () => import('vuepress-plugin-versioning/components/SearchBox')
+    VersionedSearchBox: () => import('./VersionedSearchBox.vue')
   },
   computed: {
     hasVersions () {

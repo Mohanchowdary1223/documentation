@@ -1,4 +1,5 @@
 const { description } = require('../../package')
+const path = require('path')
 
 // Determine if we're in PR preview mode
 const isPrPreview = process.env.VUEPRESS_IS_PR === 'true'
@@ -33,6 +34,15 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
+
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@SearchBox': path.resolve(__dirname, 'theme/components/SearchBox.vue'),
+        'vuepress-plugin-versioning/components/SearchBox': path.resolve(__dirname, 'theme/components/VersionedSearchBox.vue')
+      }
+    }
+  },
 
   theme: 'titanium',
 
@@ -1173,7 +1183,7 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-    'versioning'
-  ]
+    process.platform !== 'win32' ? 'versioning' : null
+  ].filter(Boolean)
 };
 

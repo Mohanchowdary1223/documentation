@@ -12,6 +12,7 @@ module.exports = (options, ctx) => ({
         .some(base => themeConfig.locales[base].algolia)
     )
     return {
+      '@SearchBox': path.resolve(__dirname, 'components/SearchBox.vue'),
       '@AlgoliaSearchBox': isAlgoliaSearch
         ? path.resolve(__dirname, 'components/AlgoliaSearchBox.vue')
         : path.resolve(__dirname, 'noopModule.js')
